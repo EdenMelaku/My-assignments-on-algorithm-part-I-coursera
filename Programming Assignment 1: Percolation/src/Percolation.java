@@ -33,6 +33,21 @@ public class Percolation {
 	   }
 	   public boolean isFull(int row, int col)  // is site (row, col) full?
 	   {
+		   if (grid[row-1][col]==1) {
+			   return true;
+		   }
+		   if (grid[row+1][col]==1) {
+			   return true;
+		   }
+		   if (grid[row][col-1]==1) {
+			   return true;
+		   }
+		   if (grid[row][col+1]==1) {
+			   return true;
+		   }
+		   else {
+			   return false;
+		   }
 		   
 	   }
 	   public     int numberOfOpenSites()       // number of open sites
@@ -51,3 +66,4 @@ public class Percolation {
 		   
 	   }
 	}
+
