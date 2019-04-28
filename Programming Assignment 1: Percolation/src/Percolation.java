@@ -52,7 +52,17 @@ public class Percolation {
 	   }
 	   public     int numberOfOpenSites()       // number of open sites
 	   {
-		   
+		   int n=0;
+		   for (int i=0;i<n;i++) {
+			   for (int j=0;j<n;j++) {
+				   if(isOpen(i,j)) {
+					   n++;
+				   }
+			   }
+		   }
+		   return n;
+
+
 	   }
 	   public boolean percolates()              // does the system percolate?
 	   {
