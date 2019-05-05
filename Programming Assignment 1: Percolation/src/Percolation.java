@@ -3,12 +3,14 @@ import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-	
+	private int x=0;
 	private int[][] grid;
+	private int len;
 	   public Percolation(int n)                
 	   // create n-by-n grid, with all sites blocked\
 	   
 	   {
+		   len=n;
 	   grid=new int[n][n];
 	   for (int i=0;i<n;i++) {
 		   for (int j=0;j<n;j++) {
@@ -38,7 +40,7 @@ public class Percolation {
 	   {
 		   try {
 		   if (grid[row-1][col]==1) {
-			   return true;
+			   //return true;
 		   }
 		   if (grid[row+1][col]==1) {
 			   return true;
@@ -53,7 +55,7 @@ public class Percolation {
 			   return false;
 		   }
 		   }
-		   catch(java.lang.IllegalArgumentException x) {
+		   catch(IllegalArgumentException x) {
 			   System.out.println(x);
 			   return false;
 		   }
@@ -75,9 +77,50 @@ public class Percolation {
 	   }
 	   public boolean percolates()              // does the system percolate?
 	   {
-		   int Startingpoints=grid.length;
+		  int routes=0;
+		   
+		   for(int i=1;i<=len;i++) {
+			  
+			  System.out.println("finding route for grid   "+i);
+			   
+			   int r=0;
+			   int c=i;
+			   
+			   
+			   
+			   if (!isOpen(r,c)) {
+				   System.out.println("this grid is not open no route for grid  0,"+c);
+					  
+
+			   } 
+			   if (isFull(r,c)){
+				   System.out.println(" this grid is not full no route for grid  0,"+c);
+					  
+
+			   } 
+			   else {
+				   CheckConn(r,c,len);
+				   if(x==1) {
+					   System.out.println(" the grid   0,"+c+"  percolates");
+
+					   routes++;
+				   }
+				   else {
+					   System.out.println(" the grid  0,"+c+"  does  NOT percolate");
+
+					
+				   }
+		   
+		   }
+		   
+		   }
+		   if (routes>0) {
 		   
 		   return true;
+	   }
+		   else {
+			   return false;
+		   }
 	   }
 
 	   public static void main(String[] args)   // test client (optional)
@@ -85,6 +128,28 @@ public class Percolation {
 	   {
 		   
 		   
+	   }
+	   
+	   public boolean CheckConn(int r, int c,int n) {
+		   
+		  if(!isFull(r,c) || r>n ||c>n) {
+			  return false;
+		  } 
+		  else if(isOpen(r,c) && r==n) {
+			   x=1;
+			  return true;
+		  }
+		  else {
+			  
+			 if (CheckConn(r+1,c,n) || CheckConn(r,c-1,n)|| CheckConn(r,c+1,n)) {
+				 return true;
+			 }
+			 else {
+				 return false;
+				 }
+			  
+			  
+		  }
 	   }
 	}
 
