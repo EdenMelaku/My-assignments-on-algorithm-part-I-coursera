@@ -1,32 +1,57 @@
+import edu.princeton.cs.algs4.StdRandom;
 
 public class PercolationStats {
-   public PercolationStats(int n, int trials)  {
-	   Public int trialsResult[];
-	   
+	
+   public static double trialsResult[];
+   double mean;
+   
+   public PercolationStats(int n, int trials)throws IllegalArgumentException  {
+	  
+	   if (n<=0||trials<=0) {
+		   throw new IllegalArgumentException();
+	   }
+	   else {
 	   Percolation per =new Percolation(n);
 	   
-	   int lim=(n*n)-1;
+	   int lim=(n*n);
+	   
 	   for(int i=0;i<trials;i++) {
 		   while (!per.percolates()) {
 			   
-			   per.open(Std.Random(0,lim),Std.Random(0,lim));
+			   per.open(StdRandom.uniform(1,lim+1),StdRandom.uniform(1,lim+1));
 		   }
 		   
-		   int res=per.numberOfOpenSites()/ (lim+1);
+		   int res=per.numberOfOpenSites()/ (lim);
 		   
-		   trialResult[i]=res;
+		   trialsResult[i]=res;
 		   
 	   }
 	   
-	   
+	   }
    }  // perform trials independent experiments on an n-by-n grid
    public double mean()  {
-	   
-	return 0.0;   
+	double sum=0;
+	for(int i=0;i<trialsResult.length;i++) {
+		
+		sum=sum+trialsResult[i];
+	
+	} 
+	mean=sum/trialsResult.length;
+	
+	return mean;   
    }                        // sample mean of percolation threshold
    public double stddev()  {
 	   
-	   return 0.0; 
+	   double sum=0;
+		for(int i=0;i<trialsResult.length;i++) {
+			double x=trialsResult[i]-mean;
+			x=x*x;
+			sum=sum+x;
+		
+		} 
+		double standardDeviation=sum/trialsResult.length-1;
+		
+		return standardDeviation;
    }                      // sample standard deviation of percolation threshold
    public double confidenceLo() {
 	   
@@ -46,7 +71,7 @@ public class PercolationStats {
 	   
 	   for(int i=0;i<10;i++) {
 	   
-		   system.out.println(trialResult[i]);
+		   System.out.println(trialsResult[i]);
 	   
 	   }
 	   
