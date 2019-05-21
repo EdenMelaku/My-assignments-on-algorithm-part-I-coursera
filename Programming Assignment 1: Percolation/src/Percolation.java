@@ -10,6 +10,7 @@ public class Percolation {
 	   // create n-by-n grid, with all sites blocked\
 	   
 	   {
+        
 		   len=n;
 	   grid=new int[n][n];
 	   for (int i=0;i<n;i++) {
@@ -130,7 +131,7 @@ public class Percolation {
 		   
 	   }
 	   
-	   public boolean CheckConn(int r, int c,int n) {
+	   private boolean CheckConn(int r, int c,int n) {
 		   
 		  if(!isFull(r,c) || r>n ||c>n) {
 			  return false;

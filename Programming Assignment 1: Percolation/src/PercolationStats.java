@@ -2,8 +2,8 @@ import edu.princeton.cs.algs4.StdRandom;
 
 public class PercolationStats {
 	
-   public static double trialsResult[];
-   double mean;
+   private static double trialsResult[];
+   private double mean;
    
    public PercolationStats(int n, int trials)throws IllegalArgumentException  {
 	  
