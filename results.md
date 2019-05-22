@@ -1,5 +1,5 @@
 
-#running tests on code for grid size of 200 and 100 trials 
+# running tests on code for grid size of 200 and 100 trials 
 
 
 ```
@@ -507,7 +507,7 @@ result 0.604625
 ```
 
 
-##stastical result
+##  stastical result
 
 mean 0.5921972499999998
 standard deviation  0.009510234980341606
@@ -518,7 +518,7 @@ confidence low 0.5903332439438528
 
 
 
-##result on the question paper 
+## result on the question paper 
 
 % java-algs4 PercolationStats 200 100
 mean                    = 0.5929934999999997
