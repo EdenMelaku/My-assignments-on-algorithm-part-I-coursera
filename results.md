@@ -524,6 +524,9 @@ confidence low= 0.5903332439438528
 ## result on the question paper 
 
 % java-algs4 PercolationStats 200 100
+
 mean                    = 0.5929934999999997
+
 stddev                  = 0.00876990421552567
+
 95% confidence interval = [0.5912745987737567, 0.5947124012262428]
