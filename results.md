@@ -509,10 +509,13 @@ result 0.604625
 
 ##  stastical result
 
-mean 0.5921972499999998
-standard deviation  0.009510234980341606
-confidence high 0.5903332439438528
-confidence low 0.5903332439438528
+mean= 0.5921972499999998
+
+standard deviation=  0.009510234980341606
+
+confidence high= 0.5903332439438528
+
+confidence low= 0.5903332439438528
 
 
 
