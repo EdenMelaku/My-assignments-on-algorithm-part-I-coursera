@@ -4,9 +4,8 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class PercolationStats {
 	
-   private static double trialsResult[];
-   private double mean;
-   private final double param=1.96;
+   private  double trialsResult[];
+   private static final double param=1.96;
    
    public PercolationStats(int n, int trials){
 	  
@@ -14,30 +13,30 @@ public class PercolationStats {
 		   throw new IllegalArgumentException();
 	   }
 	   else {
-		   StdOut.println("  running started ");
+		   //StdOut.println("  running started ");
 	   
 	  
 	   trialsResult=new double[trials];
-	   for(int i = 0;i < trials;i++) {
+	   for(int i = 0; i < trials; i++) {
 		   Percolation per =new Percolation(n);
 		   
-		   int lim=(n*n);
-		   StdOut.println("  trial "+(i+1));
+		   int lim=( n * n );
+		   //StdOut.println("  trial "+( i + 1 ));
 
 		   while (!per.percolates()) {
-			   int r=StdRandom.uniform(0,n+1);
-			   int c=StdRandom.uniform(0,n+1);
-			 //  System.out.println("openninggg "+ r+" ,"+c);
+			   int r = StdRandom.uniform(1, n+1);
+			   int c = StdRandom.uniform(1, n+1);
+			  // System.out.println("openninggg "+ r+" ,"+c);
 			   per.open(r,c);
 		   }
-		   int x=per.numberOfOpenSites();
+		   int x = per.numberOfOpenSites();
 		   double res;
-		   res=(1.0*x)/(1.0*lim);
-		   StdOut.println("number of open sites= "+per.numberOfOpenSites());
-		   StdOut.println("lim = "+lim);
-		   StdOut.println("result "+res);
+		   res = ( 1.0 * x ) / ( 1.0 * lim );
+		   //StdOut.println("number of open sites= "+per.numberOfOpenSites());
+		   //StdOut.println("lim = "+lim);
+		   //StdOut.println("result "+res);
 
-		   trialsResult[i]=res;
+		   trialsResult[i] = res;
 		   
 	   }
 	   
@@ -51,11 +50,11 @@ public class PercolationStats {
 		return StdStats.stddev(trialsResult) ;
    }                      // sample standard deviation of percolation threshold
    public double confidenceLo() {
-	   double x=mean()-(param*stddev())/Math.sqrt(trialsResult.length);
+	   double x = mean() - (param * stddev()) / Math.sqrt(trialsResult.length);
 	   return x;
    }                  // low  endpoint of 95% confidence interval
    public double confidenceHi()      {
-	   double x=mean()-(param*stddev())/Math.sqrt(trialsResult.length);
+	   double x = mean()-(param * stddev()) / Math.sqrt(trialsResult.length);
 
 	   return x;
 	   
@@ -65,11 +64,11 @@ public class PercolationStats {
    public static void main(String[] args) {
 	   
 	   
-	   PercolationStats ps=new PercolationStats(0,100);
+	   PercolationStats ps = new PercolationStats(5,10);
 	   
-	   for(int i = 0; i < trialsResult.length; i++) {
+	   for(int i = 0; i < ps.trialsResult.length; i++) {
 	   
-		   StdOut.println(trialsResult[i]);
+		   StdOut.println(ps.trialsResult[i]);
 	   
 	   }
 	   
