@@ -34,13 +34,21 @@ Aggregate score: 97.18% [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checks
  ## ASSESSMENT SUMMARY
  
  Compilation: PASSED (0 errors, 2 warnings) 
+ 
  API: PASSED
+ 
  Spotbugs: PASSED
+ 
  PMD: PASSED 
+ 
  Checkstyle: FAILED (0 errors, 58 warnings)
+ 
  Correctness: 34/43 tests passed
+ 
  Memory: 92/105 tests passed 
+ 
  Timing: 181/193 tests passed
+ 
  
  Aggregate score: 84.96% [Compilation: 5%, API: 5%, Spotbugs: 0%, PMD: 0%, Checkstyle: 0%, Correctness: 60%, Memory: 10%, Timing: 20%] 
 
