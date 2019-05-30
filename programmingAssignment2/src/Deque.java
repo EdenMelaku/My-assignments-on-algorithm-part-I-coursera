@@ -6,13 +6,13 @@ public class Deque<Item> implements Iterable<Item> {
     private Node last;
     private Node x;
     private int numberOfItems = 0;
-    private class Node{
+    private class Node {
         Item item;
         Node next;
         Node prev;
     }
 
-    public Deque(){
+    public Deque() {
      first = null;
 
      last = first;
@@ -20,106 +20,125 @@ public class Deque<Item> implements Iterable<Item> {
     }
     // construct an empty deque
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
 
         return first == null;
 
 
     }                 // is the deque empty?
 
-    public int size(){
+    public int size() {
 
        return numberOfItems;
     }                      // return the number of items on the deque
-    public void addFirst(Item item){
+    public void addFirst(Item item) {
 
-        if (item == null){
+        if (item == null) {
 
             throw new java.lang.IllegalArgumentException();
 
         }
 
-        if(isEmpty()){
+        if (isEmpty()) {
         //    System.out.println("here ");
-            first=new Node();
-            first.item=item;
-            first.next=null;
-            first.prev=null;
-            last=first;
+            first = new Node();
+            first.item = item;
+            first.next = null;
+            first.prev = null;
+            last = first;
             ++numberOfItems;
             return;
         }
         numberOfItems++;
         Node newFirst = new Node();
-        newFirst.item=item;
-        newFirst.prev=null;
-        newFirst.next=first;
-        first.prev=newFirst;
-        first=newFirst;
+        newFirst.item = item;
+        newFirst.prev = null;
+        newFirst.next = first;
+        first.prev = newFirst;
+        first = newFirst;
 
 
       //  System.out.println("added  "+item+" at \n prev = null \n next = "+first.next.item);
 
     }          // add the item to the front
-    public void addLast(Item item){
+    public void addLast(Item item) {
 
-        if (item == null){
+        if (item == null) {
 
             throw new java.lang.IllegalArgumentException();
         }
 
 
-        if(isEmpty()){
+        if (isEmpty()) {
           //  System.out.println("here ");
-            first=new Node();
+            first = new Node();
 
-            first.item=item;
-            first.next=null;
-            first.prev=null;
-            last=first;
+            first.item = item;
+            first.next = null;
+            first.prev = null;
+            last = first;
             ++numberOfItems;
             return;
         }
         numberOfItems++;
-        Node newLast=new Node();
-        newLast.item=item;
-        newLast.prev=last;
-        newLast.next=null;
-        last.next=newLast;
-        last=newLast;
+        Node newLast = new Node();
+        newLast.item = item;
+        newLast.prev = last;
+        newLast.next = null;
+        last.next = newLast;
+        last = newLast;
 
         //System.out.println("added  "+item+" at \n next = null \n prev= "+last.prev.item);
 
 
-    }         // add the item to the end
-    public Item removeFirst(){
+    }
+    // add the item to the end
+    public Item removeFirst() {
 
-        if(isEmpty()){
+        if (isEmpty()) {
 
             throw new java.util.NoSuchElementException();
 
         }
+        if (numberOfItems == 1) {
+            Item i = first.item;
+            first = null;
+            last = first;
+            numberOfItems--;
+            return i;
+
+        }
+
+
         numberOfItems--;
         Item i = first.item;
         Node Oldf = first;
         first = first.next;
-        first.prev=null;
-        Oldf.next=null;
+//        first.prev = null;
+        Oldf.next = null;
         return i;
     }                // remove and return the item from the front
-    public Item removeLast(){
-        if(isEmpty()){
+    public Item removeLast() {
+        if (isEmpty()) {
 
            throw new java.util.NoSuchElementException();
         }
-        Item i=last.item;
+        Item i = last.item;
 
+        if (numberOfItems == 1){
+
+            first = null;
+            last = first;
+            numberOfItems--;
+            return i;
+
+        }
 
         numberOfItems--;
-        Node oldLast=last;
-        last=oldLast.prev;
-        last.next=null;
-        oldLast.prev=null;
+        Node oldLast = last;
+        last = oldLast.prev;
+        last.next = null;
+        oldLast.prev = null;
 
 
         return i;
@@ -128,10 +147,11 @@ public class Deque<Item> implements Iterable<Item> {
 
 
 
-    public Iterator<Item> iterator(){
+    public Iterator<Item> iterator() {
     return new ListIterator();
 
-    }         // return an iterator over items in order from front to end
+    }
+    // return an iterator over items in order from front to end
     private class ListIterator implements Iterator<Item>
     {
         private Node current = first;
@@ -150,24 +170,25 @@ public class Deque<Item> implements Iterable<Item> {
         public Item next()
         {
 
-            Item item = current.item;
-            if (item == null){
+            if (!hasNext()){
                throw new java.util.NoSuchElementException();
             }
+            Item item = current.item;
+
             current = current.next;
             return item;
         }
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
     Deque<String> d=new Deque<String>();
 
 
-        String alp[]={"A","B","C","D","E","F","G","H","I","J","K","L"};
+        String alp[] = { "A","B","C","D","E","F","G","H","I","J","K","L" };
 
-        for (int i=0;i<=10;i++){
+        for (int i = 0; i <= 10; i++) {
 
              System.out.println("adding ---"+i);
 
@@ -179,13 +200,13 @@ public class Deque<Item> implements Iterable<Item> {
         }
         System.out.println("number of items = "+d.numberOfItems);
 
-       d.x=d.first.next;
+       d.x = d.first.next;
 
-       while(d.x.item!=d.last.item){
+       while( d.x.item != d.last.item) {
 
            //System.out.println("item= "+d.x.item+"\n prev = "+d.x.prev.item+"\n next ="+d.x.next.item+"\n######################\n");
            System.out.print(d.x.item);
-           d.x=d.x.next;
+           d.x = d.x.next;
 
        }
        System.out.println();
@@ -194,23 +215,25 @@ public class Deque<Item> implements Iterable<Item> {
 
 
 
+        System.out.println("------------- number of items = "+d.numberOfItems);
 
 
-        for (int i=0;i<= d.numberOfItems;i++){
+        for (int i = 0; i <= 10; i++){
 
 
-            System.out.println("removed  "+d.removeFirst());
+            System.out.println("removed  "+d.removeLast());
             System.out.println("number of items = "+d.numberOfItems);
-            d.x=d.first;
-
-            while(d.x.next!=null){
+            d.x = d.first;
+            int j = 0;
+            while (j<d.numberOfItems) {
 
                 //System.out.println("item= "+d.x.item+"\n prev = "+d.x.prev.item+"\n next ="+d.x.next.item+"\n######################\n");
                 System.out.print(d.x.item);
-                d.x=d.x.next;
+                d.x = d.x.next;
+                j++;
 
             }
-            System.out.print(d.last.item);
+            //System.out.print(d.last.item);
 
             System.out.println();
 

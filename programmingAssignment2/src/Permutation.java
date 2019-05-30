@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 
 public class Permutation {
@@ -9,25 +10,26 @@ public class Permutation {
         RandomizedQueue<String> rq = new RandomizedQueue<String>();
         String x = args[0];
         int y = Integer.parseInt(x);
-        System.out.println(x);
-        System.out.println("enter items .... enter XXX to exit  ");
-        int i = 0;
-        while (true) {
 
-            String c = StdIn.readString();
-            if (c.equalsIgnoreCase("xxx")) {
-                break;
-            }
-            rq.enqueue(c);
-            i++;
-        }
+         while (!StdIn.isEmpty()) {
 
-        for (int j = 0; j < y; j++) {
-            System.out.println(rq.sample());
+         String c = StdIn.readString();
+         rq.enqueue(c);
+
+         }
+
+         for (int j = 0; j < y; j++) {
+         StdOut.println(rq.dequeue());
 
 
-        }
+         }
+
+
+
 
 
     }
-}
+
+
+    }
+
