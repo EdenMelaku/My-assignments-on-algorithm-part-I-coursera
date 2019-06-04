@@ -61,14 +61,22 @@ public class Point implements Comparable<Point> {
      * @return the slope between this point and the specified point
      */
     public double slopeTo(Point that) {
-        double slope = (this.y - that.y) / (this.x - that.x);
-        if (this.y == that.y){
+
+        if (this.y == that.y && this.x == that.x) {
+
             return Double.NEGATIVE_INFINITY;
         }
-        else if(this.x == that.x) {
+        else if (this.y == that.y) {
+            return +0.0;
+        }
+        else if (this.x == that.x) {
              return Double.POSITIVE_INFINITY;
         }
-        return slope;
+        else {
+            double slope = (this.y * 1.0 - that.y * 1.0) / (this.x * 1.0 - that.x * 1.0);
+
+            return slope;
+        }
         /* YOUR CODE HERE */
     }
 
@@ -86,7 +94,7 @@ public class Point implements Comparable<Point> {
      */
     public int compareTo(Point that) {
         if (this.y == that.y) {
-            if (this.x == that.y) {
+            if (this.x == that.x) {
                 return 0;
             } else if (this.x < that.x) {
 
@@ -96,11 +104,11 @@ public class Point implements Comparable<Point> {
             }
         }
 
-        else if(this.y < that.y) {
+        else if (this.y < that.y) {
                 return -1;
             }
 
-        else{
+        else {
             return 1;
         }
 
@@ -117,11 +125,11 @@ public class Point implements Comparable<Point> {
      */
     public Comparator<Point> slopeOrder() {
         /* YOUR CODE HERE */
-       return new compare();
+       return new Compare();
 
     }
 
-    private class compare implements Comparator<Point>{
+    private class Compare implements Comparator<Point> {
 
 
         @Override
@@ -129,8 +137,8 @@ public class Point implements Comparable<Point> {
             double slope1 = slopeTo(o1);
             double slope2 = slopeTo(o2);
 
-            if ( slope1 == slope2 ) return 0;
-            if ( slope1 < slope2 ) return -1;
+            if (slope1 == slope2) return 0;
+            if (slope1 < slope2) return -1;
             return 1;
 
 
@@ -145,6 +153,7 @@ public class Point implements Comparable<Point> {
      *
      * @return a string representation of this point
      */
+
     public String toString() {
         /* DO NOT MODIFY */
         return "(" + x + ", " + y + ")";
@@ -154,7 +163,7 @@ public class Point implements Comparable<Point> {
      * Unit tests the Point data type.
      */
     public static void main(String[] args) {
-
+   /*
         // read the n points from a file
         In in = new In(args[0]);
         int n = in.readInt();
@@ -175,11 +184,19 @@ public class Point implements Comparable<Point> {
         StdDraw.show();
 
         // print and draw the line segments
-    //    FastCollinearPoints collinear = new FastCollinearPoints(points);
-      //  for (LineSegment segment : collinear.segments()) {
-         //   StdOut.println(segment);
-           // segment.draw();
-        //}
-        //StdDraw.show();
+       FastCollinearPoints collinear = new FastCollinearPoints(points);
+      for (LineSegment segment : collinear.segments()) {
+            StdOut.println(segment);
+            segment.draw();
+         }
+         StdDraw.show();
+    */
+
+        Point p= new Point(7,7);
+        Point q= new Point(8,7);
+
+        System.out.println("p compared with q  "+p.compareTo(q));
+        System.out.println("q compared with p "+q.compareTo(p));
+
     }
 }
