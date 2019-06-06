@@ -9,10 +9,17 @@ public class BruteCollinearPoints {
    private  Point [] points = null;
    private LineSegment[] segments = null;
     public BruteCollinearPoints(Point[] points) {
+        if (points == null){
+            throw new IllegalArgumentException();
 
+        }
+        ArrayList<Point> p=new ArrayList<>();
         for (int i = 0; i < points.length; i++) {
-            if (points[i] == null) {
+            if (points[i] == null || p.contains(points[i])) {
                 throw new IllegalArgumentException();
+            }
+            else{
+                p.add(points[i]);
             }
         }
         this.points = points;
@@ -34,7 +41,7 @@ public class BruteCollinearPoints {
            // System.out.print(slopes[i]+" ");
         }
        //  System.out.println();
-        if (isCol) {
+        if (isCol && points.length-1 != 0 ) {
 
             LineSegment li = new LineSegment(points[0], points[points.length-1]);
 
@@ -72,7 +79,7 @@ public class BruteCollinearPoints {
 
             ArrayList <Integer> sll= new ArrayList<>();
 
-            for (int k = 0; k < s.length-1; k++) {
+            for (int k = 0; k < s.length; k++) {
 
                 int larPoint = k;
                 for (int j = k; j < s.length; j++) {
