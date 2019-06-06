@@ -38,7 +38,7 @@ public class BruteCollinearPoints {
 
             LineSegment li = new LineSegment(points[0], points[points.length-1]);
 
-            System.out.println(points[0]+" =>"+points[points.length-1]);
+            //System.out.println(points[0]+" =>"+points[points.length-1]);
 
             l.add(li);
             segments = l.toArray(new LineSegment[l.size()]);
@@ -58,9 +58,9 @@ public class BruteCollinearPoints {
             for (int i = 0; i < points.length; i++) {
                 for (int j = 0; j < points.length; j++) {
 
-                    System.out.print(s[i][j] +"               | ");
+                   // System.out.print(s[i][j] +"               | ");
                 }
-                System.out.println();
+               // System.out.println();
             }
 
 
@@ -74,15 +74,15 @@ public class BruteCollinearPoints {
 
             for (int k = 0; k < s.length-1; k++) {
 
-                int larPoint=k;
+                int larPoint = k;
                 for (int j = k; j < s.length; j++) {
 
                     for (int y = j + 1; y < s.length; y++) {
 
-                        if (s[k][j] == s[k][y] ) {
-                            if(!sll.contains(y)){
+                        if (s[k][j] == s[k][y]) {
+                            if (!sll.contains(y)) {
                                 sll.add(y);
-                                larPoint=y;
+                                larPoint = y;
                             }
 
 
@@ -91,16 +91,19 @@ public class BruteCollinearPoints {
 
                 }
 
-                LineSegment line = new LineSegment(points[k], points[larPoint]);
+                if (larPoint != k) {
+                    LineSegment line = new LineSegment(points[k], points[larPoint]);
 
-                if (!l.contains(line) && larPoint != k  ) {
-                    l.add(line);
-                    System.out.println(points[k]+" =>"+points[larPoint]);
-                    System.out.println(l.lastIndexOf(l));
+                    if (!l.contains(line)) {
 
-                    points[k].drawTo(points[larPoint]);
+                        l.add(line);
+                        //System.out.println(points[k] + " =>" + points[larPoint]);
+                        //System.out.println(l.lastIndexOf(l));
+
+                        points[k].drawTo(points[larPoint]);
+                    }
+
                 }
-
             }
             StdDraw.show();
             segments = l.toArray(new LineSegment[l.size()]);
