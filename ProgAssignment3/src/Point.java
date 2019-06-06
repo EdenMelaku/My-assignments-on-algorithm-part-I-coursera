@@ -12,6 +12,7 @@ import java.util.Comparator;
 
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Point implements Comparable<Point> {
 
@@ -163,7 +164,6 @@ public class Point implements Comparable<Point> {
      * Unit tests the Point data type.
      */
     public static void main(String[] args) {
-   /*
         // read the n points from a file
         In in = new In(args[0]);
         int n = in.readInt();
@@ -190,10 +190,10 @@ public class Point implements Comparable<Point> {
             segment.draw();
          }
          StdDraw.show();
-    */
 
-        Point p= new Point(7,7);
-        Point q= new Point(8,7);
+
+        Point p = new Point(7, 7);
+        Point q = new Point(8, 7);
 
         System.out.println("p compared with q  "+p.compareTo(q));
         System.out.println("q compared with p "+q.compareTo(p));
