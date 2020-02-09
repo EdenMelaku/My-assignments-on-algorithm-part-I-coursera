@@ -142,6 +142,8 @@ public class BruteCollinearPoints {
     }            // the line segments
 
 
+
+
     public static void main(String... args) {
 
         Point p = new Point(2, 4);
